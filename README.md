@@ -1,12 +1,24 @@
-# Iam
+# README
 
-# 構成
-- ruby  3.2.1
-- rails 7.0.4.2
-- postgres  latest
+This README would normally document whatever steps are necessary to get the
+application up and running.
 
-# Dockerコマンド
- - docker compose run --rm --no-deps web rails new . --force --database=postgresql
- - docker compose build
- - docker compose run --rm web rails db:create
- - docker compose up
+Things you may want to cover:
+
+* Ruby version
+
+* System dependencies
+
+* Configuration
+
+* Database creation
+
+* Database initialization
+
+* How to run the test suite
+
+* Services (job queues, cache servers, search engines, etc.)
+
+* Deployment instructions
+
+* ...
