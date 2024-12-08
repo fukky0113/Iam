@@ -1,24 +1,39 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Iam
 
-Things you may want to cover:
+## Userクラスの定義
+- 画面
+  - 一覧 index
+  - 変更 update
+  - 登録  new
+  - 削除 destroy
+  - 詳細 show
 
-* Ruby version
+- ユーザー情報
+  - メール(userID)
+  - パスワード(ハッシュ化が必要)
 
-* System dependencies
+- 必要なテスト
+  - ユーザーモデルの検証
+    - 有効性
+    - 存在性
+    - 長さ
+    - フォーマット
+    - 一意性
+  - パスワード
+    - 長さ
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+  - 登録が表示されること
+    - 有効なユーザーの場合、DBに登録できること
+    - 有効なユーザーの場合、画面遷移すること。
+    - 無効なユーザーの場合、DBに登録しないこと
+    - 無効なユーザーの場合、エラー情報を表示すること
+  - 削除が表示されること
+    - T.B.D
+  - 詳細が表示されること
+    - T.B.D
+  - 一覧が表示されること
+    - T.B.D
+  - 変更が表示されること
+    - T.B.D
