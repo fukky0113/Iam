@@ -50,6 +50,7 @@ gem "bootsnap", require: false
 
 # add API
 gem "bcrypt", "3.1.18"
+gem "rails-controller-testing", "1.0.5"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
