@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:index, :edit, :update, :new, :create, :show] 
+  before_action :logged_in_user, only: [:index, :edit, :update, :new, :create, :show, :destroy] 
   before_action :correct_user, only: [:edit, :update, :show]
+  before_action :admin_user, only: :destroy
 
   def index 
     @user = User.all
@@ -38,6 +39,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    User.find(params[:id]).destroy
+    redirect_to users_path, status: :see_other
+  end
+
   private
     def user_params
       params.require(:user).permit(:name, :user_id, :password, :password_confirmation)
@@ -53,5 +59,9 @@ class UsersController < ApplicationController
     def correct_user
       @user = User.find(params[:id])
       redirect_to(root_url, status: :see_other) unless current_user?(@user)
+    end
+
+    def admin_user
+      redirect_to(root_url, status: :see_other) unless current_user.admin?
     end
 end
