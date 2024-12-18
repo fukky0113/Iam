@@ -2,3 +2,8 @@ hogefuga:
   name: "hogefuga"
   user_id: "@hogefuga"
   password_digest: <%= User.digest('password') %>
+
+archer:
+  name: "Sterling Archer"
+  user_id: "@duchess"
+  password_digest: <%= User.digest('password') %>

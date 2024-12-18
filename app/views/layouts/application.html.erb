@@ -17,6 +17,7 @@
       <ul class="navbar-nav ms-auto">
         <% if logged_in? %>
           <li class="nav-item"><%= link_to "Profile", user_path(current_user),  class: "nav-link text-light" %></li>
+          <li class="nav-item"><%= link_to "Setting", edit_user_path(current_user),  class: "nav-link text-light" %></li>
           <li class="nav-item"><%= link_to "Logout", logout_path, data: {"turbo-method": :delete}, class: "nav-link text-light" %></li>
         <% end %>
       </ul>
