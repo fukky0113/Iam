@@ -12,6 +12,11 @@ class UserControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should get index" do
+    get users_path
+    assert_redirected_to login_path
+  end
+
   test "should redirect edit when logged in as wrong user" do
     log_in_as(@other_user)
     get edit_user_path(@user)
