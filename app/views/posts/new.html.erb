@@ -4,8 +4,7 @@
     <%= f.label :title, "タイトル" %>
     <%= f.text_field :title %>
 
-    <%= f.label :content, "記事" %>
     <%= f.rich_text_area :content %>
     
-    <%= f.submit @post.new_record? ? "投稿する" : "更新する" %>
+    <%= f.submit "投稿する" %>
 <% end %>

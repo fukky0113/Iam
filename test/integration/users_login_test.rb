@@ -31,12 +31,12 @@ end
 class ValidLoginTest < ValidLogin
   test "valid login" do
     assert is_logged_in? 
-    assert_redirected_to @user
+    assert_redirected_to posts_path
   end
 
   test "redirect after login" do
     follow_redirect!
-    assert_template 'users/show'
+    assert_template 'posts/index'
     assert_select "a[href=?]", logout_path
     assert_select "a[href=?]", user_path(@user)
   end
