@@ -1,0 +1,11 @@
+<h1>Posts#new</h1>
+
+<%= form_with(model: @post) do |f| %>
+    <%= f.label :title, "タイトル" %>
+    <%= f.text_field :title %>
+
+    <%= f.label :content, "記事" %>
+    <%= f.rich_text_area :content %>
+    
+    <%= f.submit @post.new_record? ? "投稿する" : "更新する" %>
+<% end %>
