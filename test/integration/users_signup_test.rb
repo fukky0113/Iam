@@ -10,7 +10,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     log_in_as(@user)
     get signup_path
     assert_no_difference 'User.count' do
-      post users_path, params: { user: {user_id:  "@hoge",
+      post users_path, params: { user: {user_id:  "",
                                         name:     "hoge",
                                         password: "hoge",
                                         password_confirmation: "hoge"}}
@@ -23,13 +23,13 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     log_in_as(@user)
     get signup_path
     assert_difference 'User.count' do
-      post users_path, params: { user: {user_id:  "@hogehoge",
-                                        name:     "hoge",
-                                        password: "hogehoge",
-                                        password_confirmation: "hogehoge"}}
+      post users_path, params: { user: {name:     "fugafuga",
+                                        user_id:  "@fugafuga",
+                                        password: "fugafuga",
+                                        password_confirmation: "fugafuga"}}
     end
     follow_redirect!
-    assert_template 'users/show'
+    assert_template 'posts/index'
   end
 
 end

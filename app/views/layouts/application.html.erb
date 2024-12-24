@@ -19,14 +19,34 @@
     
       <ul class="navbar-nav ms-auto">
         <% if logged_in? %>
-          <li class="nav-item"><%= link_to "Profile", user_path(current_user),  class: "nav-link text-light" %></li>
-          <li class="nav-item"><%= link_to "Setting", edit_user_path(current_user),  class: "nav-link text-light" %></li>
-          <li class="nav-item"><%= link_to "Index", users_path,  class: "nav-link text-light" %></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Post Setting
+            </a>
+            <ul class="dropdown-menu">
+              <li class="nav-item"><%= link_to "New", new_post_path,  class: "nav-link" %></li>
+              <li class="nav-item"><%= link_to "Index", posts_path,  class: "nav-link" %></li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              User Setting
+            </a>
+            <ul class="dropdown-menu">
+              <li class="nav-item"><%= link_to "New", new_user_path,  class: "nav-link" %></li>        
+              <li class="nav-item"><%= link_to "Profile", user_path(current_user),  class: "nav-link" %></li>
+              <li class="nav-item"><%= link_to "Setting", edit_user_path(current_user),  class: "nav-link" %></li>
+              <li class="nav-item"><%= link_to "Index", users_path,  class: "nav-link" %></li>          
+            </ul>
+          </li>
+  
           <li class="nav-item"><%= link_to "Logout", logout_path, data: {"turbo-method": :delete}, class: "nav-link text-light" %></li>
         <% end %>
       </ul>
     </nav>
 
     <%= yield %>
+    <%= debug(params) if Rails.env.development? %>
   </body>
 </html>

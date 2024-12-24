@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :logged_in_user, only: [:index, :edit, :update, :new, :create, :show, :destroy] 
-  before_action :correct_user, only: [:edit, :update, :show]
-  before_action :admin_user, only: :destroy
+  before_action :correct_user, only: []
+  before_action :admin_user, only: [:destroy, :show, :edit, :update, :new, :create, :index]
 
   def index 
     @user = User.all
@@ -16,7 +16,7 @@ class UsersController < ApplicationController
     if @user.save
       reset_session
       log_in @user
-      redirect_to @user
+      redirect_to posts_path
     else
       render 'new', status: :unprocessable_entity
     end
