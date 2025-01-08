@@ -1,4 +1,7 @@
 class PostsController < ApplicationController
+  before_action :logged_in_user, only: [:index, :new, :create, :show, :destroy]
+  before_action :admin_user, only: [:new, :create, :show, :destroy]
+
   def new
     @post = Post.new
   end
@@ -18,6 +21,11 @@ class PostsController < ApplicationController
 
   def index
     @post = Post.all
+  end
+
+  def destroy
+    Post.find(params[:id]).destroy
+    redirect_to posts_path, status: :see_other
   end
 
   private

@@ -9,5 +9,5 @@ pin_all_from "app/javascript/controllers", under: "controllers"
 # to Bootstrap 
 pin "bootstrap", to: "bootstrap.min.js", preload: true
 pin "@popperjs/core", to: "popper.js", preload: true
-pin "trix"
+pin "trix", to: "https://unpkg.com/trix@2.0.8/dist/trix.umd.min.js"
 pin "@rails/actiontext", to: "actiontext.js"

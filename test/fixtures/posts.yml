@@ -1,2 +1,7 @@
 hoge1:
   title: "hoge1"
+
+<% 30.times do |n| %>
+post_<%= n %>:
+  title:  <%= "post #{n}" %>
+<% end %>
