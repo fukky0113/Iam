@@ -86,13 +86,36 @@ class UserControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to login_path
   end
 
+  # test update
+  test "should update user" do
+    log_in_as(@admin_user)
+    patch user_path(@admin_user), params: { user: { name: @admin_user.name,
+                                              user_id: @admin_user.user_id}}
+    assert_redirected_to user_path(@admin_user)
+  end
 
+  test "if you are not log in, should update user" do
+    patch user_path(@admin_user), params: { user: { name: @admin_user.name,
+                                              user_id: @admin_user.user_id}}
+    assert_response :see_other
+    assert_redirected_to login_path
+  end
 
   test "should redirect update when logged in as wrong user" do
     log_in_as(@user)
     patch user_path(@admin_user), params: { user: { name: @admin_user.name,
                                               user_id: @admin_user.user_id}}
     assert_redirected_to root_url
+  end
+
+  # test delete
+  test "should delete user" do
+    log_in_as(@admin_user)
+    assert_difference 'User.count', -1 do
+      delete user_path(@user)
+    end
+    assert_response :see_other
+    assert_redirected_to users_path
   end
 
   test "should redirect destroy when not logged in" do
@@ -112,4 +135,40 @@ class UserControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_url
   end
 
+  # test create
+  test "should create user" do
+    log_in_as(@admin_user)
+    assert_difference 'User.count', +1 do
+      post users_path, params: {user: {name: "test",
+                                        user_id: "@test",
+                                        password: "password",
+                                        password_confirmation: "password"}}
+    end
+    follow_redirect!
+    assert_template 'posts/index'
+  end
+
+  test "should not create user when not logged in" do
+    assert_no_difference 'User.count' do
+      post users_path, params: {user: {name: "test",
+                                        user_id: "@test",
+                                        password: "password",
+                                        password_confirmation: "password"}}
+    end
+    assert_response :see_other
+    assert_redirected_to login_path
+  end
+
+  test "should not create user when logged in as a non-admin user" do
+    log_in_as(@user)
+    assert_no_difference 'User.count' do
+      post users_path, params: {user: {name: "test",
+                                        user_id: "@test",
+                                        password: "password",
+                                        password_confirmation: "password"}}
+    end
+    assert_response :see_other
+    follow_redirect!
+    assert_redirected_to posts_path
+  end
 end

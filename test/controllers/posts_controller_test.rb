@@ -65,6 +65,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to login_url
   end
 
+  # test delete
   test "Redirect at destroy time" do
     log_in_as(@admin_user)
     assert_difference 'Post.count', -1 do
@@ -73,4 +74,50 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     assert_response :see_other
     assert_redirected_to posts_path
   end
+
+  test "if you are not an administrator, should not delete" do
+    log_in_as(@user)
+    assert_no_difference 'Post.count' do
+      delete post_path(@post)
+    end
+    assert_response :see_other
+    follow_redirect!
+    assert_redirected_to posts_path
+  end
+
+  test "if you are not log in, should not delete" do
+    assert_no_difference 'Post.count' do
+      delete post_path(@post)
+    end
+    assert_response :see_other
+    assert_redirected_to login_path
+  end
+
+    # test create
+    test "should create post" do
+      log_in_as(@admin_user)
+      assert_difference 'Post.count' do
+        post posts_path, params: {post: {title: "test"}}
+      end
+      assert_redirected_to posts_path
+    end
+
+    test "if you are not an administrator, should not create" do
+      log_in_as(@user)
+      assert_no_difference 'Post.count' do
+        post posts_path, params: {post: {title: "test"}}
+      end
+      assert_response :see_other
+      follow_redirect!
+      assert_redirected_to posts_path
+    end
+  
+    test "if you are not log in, should not create" do
+      assert_no_difference 'Post.count' do
+        post posts_path, params: {post: {title: "test"}}
+      end
+      assert_response :see_other
+      assert_redirected_to login_path
+    end
+  
 end
