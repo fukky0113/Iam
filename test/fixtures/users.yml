@@ -1,10 +1,10 @@
-hogefuga:
+admin_user:
   name: "hogefuga"
   user_id: "@hogefuga"
   password_digest: <%= User.digest('password') %>
   admin: true
 
-archer:
+user:
   name: "Sterling Archer"
   user_id: "@duchess"
   password_digest: <%= User.digest('password') %>

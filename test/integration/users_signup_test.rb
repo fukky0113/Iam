@@ -2,7 +2,7 @@ require "test_helper"
 
 class UsersSignupTest < ActionDispatch::IntegrationTest
   def setup
-    @user = users(:hogefuga)
+    @user = users(:admin_user)
   end
 
 

@@ -2,7 +2,7 @@ require "test_helper"
 
 class UsersEditTest < ActionDispatch::IntegrationTest
   def setup
-    @user = users(:hogefuga)
+    @user = users(:admin_user)
   end
 
   test "unsuccessful edit with friendly forwarding" do

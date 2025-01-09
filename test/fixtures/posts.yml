@@ -1,5 +1,5 @@
-hoge1:
-  title: "hoge1"
+post_hoge:
+  title: "hoge"
 
 <% 30.times do |n| %>
 post_<%= n %>:

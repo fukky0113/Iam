@@ -2,46 +2,111 @@ require "test_helper"
 
 class UserControllerTest < ActionDispatch::IntegrationTest
   def setup
-    @user = users(:hogefuga)
-    @other_user = users(:archer)
+    @admin_user = users(:admin_user)
+    @user = users(:user)
   end
 
+  # test new
   test "should get new" do
-    log_in_as(@user)
+    log_in_as(@admin_user)
     get new_user_url
     assert_response :success
   end
 
-  test "should get index" do
-    get users_path
-    assert_redirected_to login_path
-  end
-
-  test "should redirect edit when logged in as wrong user" do
-    log_in_as(@other_user)
-    get edit_user_path(@user)
+  test "if you are not an administrator, should not new" do
+    log_in_as(@user)
+    get new_user_url
+    assert_response :see_other
     assert_redirected_to root_url
   end
 
+  test "if you are not log in, should not new" do
+    get new_user_url
+    assert_response :see_other
+    assert_redirected_to login_url
+  end
+
+  # test index
+  test "should get index" do
+    log_in_as(@admin_user)
+    get users_path
+    assert_response :success
+  end
+
+  test "if you are not administrator should get index" do
+    log_in_as(@user)
+    get users_path
+    assert_response :see_other
+    assert_redirected_to root_url
+  end
+
+  test "if you are not log in, should get index" do
+    get users_path
+    assert_response :see_other
+    assert_redirected_to login_path
+  end
+
+  # test show
+  test "should get show" do
+    log_in_as(@admin_user)
+    get user_path(@admin_user)
+    assert_response :success
+  end
+
+  test "if you are not administrator, should get show" do
+    log_in_as(@user)
+    get user_path(@user)
+    assert_response :see_other
+    assert_redirected_to root_url
+  end
+
+  test "if you are not log in, should get show" do
+    get user_path(@user)
+    assert_response :see_other
+    assert_redirected_to login_url
+  end
+
+  #test edit
+  test "should get edit" do
+    log_in_as(@admin_user)
+    get edit_user_path(@admin_user)
+    assert_response :success
+  end
+
+  test "if you are not administrator, should get edit" do
+    log_in_as(@user)
+    get edit_user_path(@user)
+    assert_response :see_other
+    assert_redirected_to root_url
+  end
+
+  test "if you are not log in, should get edit" do
+    get edit_user_path(@user)
+    assert_response :see_other
+    assert_redirected_to login_path
+  end
+
+
+
   test "should redirect update when logged in as wrong user" do
-    log_in_as(@other_user)
-    patch user_path(@user), params: { user: { name: @user.name,
-                                              user_id: @user.user_id}}
+    log_in_as(@user)
+    patch user_path(@admin_user), params: { user: { name: @admin_user.name,
+                                              user_id: @admin_user.user_id}}
     assert_redirected_to root_url
   end
 
   test "should redirect destroy when not logged in" do
     assert_no_difference 'User.count' do
-      delete user_path(@user)
+      delete user_path(@admin_user)
     end
     assert_response :see_other
     assert_redirected_to login_url
   end
 
   test "should redirect destroy when in as a non-admin" do
-    log_in_as(@other_user)
+    log_in_as(@user)
     assert_no_difference 'User.count' do
-      delete user_path(@user)
+      delete user_path(@admin_user)
     end
     assert_response :see_other
     assert_redirected_to root_url
