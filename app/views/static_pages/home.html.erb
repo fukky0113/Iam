@@ -1,5 +1,16 @@
-<h1>Welcome</h1>
-<p>This page is "Iam". </p>
-<p>Please click SignIn below</p>
 
-<%= link_to "Sign In", login_path, class: "btn btn-primary" %>
+<div class="d-flex justify-content-center mt-5">
+    <div class="card text-center shadow" style="width: 26rem">
+        <div class="card-body">
+            <h1 class="card-title">Iam</h1>
+            <h2 class="card-text">Welcome!</h2>
+            <p class="card-text">このページは自己紹介ブログです。<br>「Sign In」ボタンからサインインしてください。</p>
+            <div>
+                <%= link_to "Sign In", login_path, class: "btn btn-primary mb-1 mt-1" %>
+            </div>
+            <div class="mt-3">
+                <%= link_to "問い合わせ", "#", class: "card-link small" %>
+            </div>
+        </div>
+    </div>
+</div>

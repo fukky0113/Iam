@@ -1,16 +1,20 @@
-<h1>Index</h1>
+<h1 class="text-center my-3">Welcome to My Blog</h1>
 
-<ol class="list-group list-group-numbered">
+<div class="row">
     <% @post.each do |post| %>
-        <li class="list-group-item d-flex justify-content-between align-items-start">
-            <div class="ms-2 me-auto">
-                <div class="fw-bold"><%= link_to post.title, post_path(post) %></div>
+        <div class="col-md-4">
+            <div class="card mx-1 my-3 shadow">
+                <div class="card-body">
+                    <h5 class="card-title"><%= string_slice_0to15(post.title) %></h5>
+                    <p class="card-text"><%= string_slice_0to20(post.content.to_plain_text) %></p>
+                    <div><%= link_to "Read More", post_path(post), class: "btn btn-primary" %></div>
 
-                <% if current_user.admin? %>
-                    <%= link_to "delete", post, data: { "turbo-method": :delete,
-                                                        turbo_confirm: "You sure?" } %>
-                <% end %>
+                    <% if current_user.admin? %>
+                        <%= link_to "delete", post, data: { "turbo-method": :delete,
+                                                            turbo_confirm: "You sure?" } %>
+                    <% end %>
+                </div>
             </div>
-        </li>
+        </div>
     <% end %>
-</ol>
+</div>
