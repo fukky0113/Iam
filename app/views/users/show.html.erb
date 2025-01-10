@@ -1,7 +1,12 @@
-<h1>Show</h1>
-
-name:
-<%= @user.name %>
-
-user_id:
-<%= @user.user_id %>
+<div class="card mx-5 my-3 shadow">
+    <div class="mx-3 my-3">
+        <h1>Profile</h1>
+        <div class="card-header">
+            Featured
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Name : <%= @user.name %></li>
+            <li class="list-group-item">User ID : <%= @user.user_id %></li>
+        </ul>
+    <div>
+</div>

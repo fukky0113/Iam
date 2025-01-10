@@ -1,21 +1,27 @@
-<h1>Index</h1>
 
-<ol class="list-group list-group-numbered">
-    <% @user.each do |user| %>
-        <li class="list-group-item d-flex justify-content-between align-items-start">
-            <div class="ms-2 me-auto">
-                <div class="fw-bold"><%= user.name%></div>
-                <%= link_to user.user_id, user_path(user) %>
+<div class="card text-center mx-5 my-3  shadow">
+    <h1>Index</h1>
 
-                <% if current_user.admin? && !current_user?(user) %>
-                    | 
-                    <%= link_to "delete", user, data: { "turbo-method": :delete,
-                                                          turbo_confirm: "You sure?" } %>
+    <ol class="list-group mx-5 my-3 list-group-numbered text-start">
+        <% @user.each do |user| %>
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+                <div class="ms-2 me-auto">
+                    <div class="fw-bold"><%= user.name%></div>
+                    <%= link_to user.user_id, user_path(user) %>
 
-                <% else %>
-                    | current user
-                <% end %>
-            </div>
-        </li>
-    <% end %>
-</ol>
+                    <% if current_user.admin? && !current_user?(user) %>
+                        |
+                        <%= link_to "edit", edit_user_path(user) %>
+
+                        | 
+                        <%= link_to "delete", user, data: { "turbo-method": :delete,
+                                                            turbo_confirm: "You sure?" } %>
+
+                    <% else %>
+                        | current user
+                    <% end %>
+                </div>
+            </li>
+        <% end %>
+    </ol>
+</div>
