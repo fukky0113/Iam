@@ -60,9 +60,8 @@ jobs:
         run: bundle exec rubocop --parallel
         
       # Renderへのデプロイ
-      - name: Deploy to production
-        uses: johnbeynon/render-deploy-action@v0.0.8
+      - name: Render deploy service
+        uses: glarivie/render-deploy-service-action@v1.0.5
         with:
-          api-key: ${{ secrets.RENDER_API_KEY }}
-          service-id: ${{ secrets.RENDER_SERVICE_ID }}
-          wait-for-success: true
+          apiKey: ${{ secrets.RENDER_API_KEY }}
+          serviceId: ${{ secrets.RENDER_SERVICE_ID }}
