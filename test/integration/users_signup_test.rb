@@ -30,6 +30,6 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     end
     follow_redirect!
     assert_template 'posts/index'
+    assert is_equals_log_in_user(@user)
   end
-
 end

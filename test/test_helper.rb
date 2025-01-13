@@ -23,4 +23,8 @@ class ActionDispatch::IntegrationTest
   def log_in_as(user, password: 'password', remember_me: '1')
     post login_path, params:{session:{user_id: user.user_id, password: password, remember_me: remember_me}}
   end
+
+  def is_equals_log_in_user(user)
+    session[:user_id] == user.id
+  end
 end
