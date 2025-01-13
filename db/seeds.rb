@@ -1,16 +1,5 @@
-User.create!(user_id: "@example",
-              name: "example",
-              password: "password",
-              password_confirmation: "password",
+User.create!(user_id: "@onetime",
+              name: "onetime",
+              password: "onetime",
+              password_confirmation: "onetime",
               admin: true)
-
-99.times do |n|
-  name = Faker::Name.initials(number: 10)
-  user_id = "@a#{n+1}"
-  password = "password"
-  User.create!(user_id: user_id,
-                name: name,
-                password: password,
-                password_confirmation: password
-                )
-end
