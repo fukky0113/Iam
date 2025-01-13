@@ -82,3 +82,10 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+group :development, :test do
+  gem 'brakeman'
+  gem 'bundler-audit'
+  gem 'rubocop-rails'
+  gem 'rubocop'
+end
