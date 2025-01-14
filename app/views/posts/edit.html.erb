@@ -1,10 +1,12 @@
 <div class="card mx-5 my-3 shadow">
-    <h1 class="text-center">Edit</h1>
-    <div class="mx-5 my-3">
-        <%= form_with(model: @post) do |f| %>
-            <%= f.text_field :title, placeholder: "タイトル", class: "my-3 w-100" %>
-            <%= f.rich_text_area :content, placeholder: "本文", class: "my-3"  %>
-            <%= f.submit "投稿", class: "btn btn-primary text-end" %>
-        <% end %>
+    <div class="card-body">
+        <h1 class="text-center card-title">Edit</h1>
+        <div class="mx-5 my-3">
+            <%= form_with(model: @post) do |f| %>
+                <%= f.text_field :title, placeholder: "タイトル", class: "my-3 w-100" %>
+                <%= f.rich_text_area :content, placeholder: "本文", class: "my-3"  %>
+                <%= f.submit "投稿", class: "btn btn-primary text-end" %>
+            <% end %>
+        </div>
     </div>
 </div>

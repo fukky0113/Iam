@@ -1,28 +1,29 @@
 <div class="d-flex justify-content-center  mt-5">
     <div class="card text-center shadow" style="width: 26rem">
+        <div class="card-body">
+            <h1 class="card-title">Edit</h1>
 
-        <h1>Edit</h1>
+            <%= form_with(model: @user) do |f| %>
+                <div class="col-sm mx-3 my-3">
+                    <%= f.text_field :name, class: "form-control", placeholder: "Name" %>
+                </div>
 
-        <%= form_with(model: @user) do |f| %>
-            <div class="col-sm mx-3 my-3">
-                <%= f.text_field :name, class: "form-control", placeholder: "Name" %>
-            </div>
+                <div class="col-sm mx-3 my-3">
+                    <%= f.text_field :user_id, class: "form-control", placeholder: "User ID" %>
+                </div>
 
-            <div class="col-sm mx-3 my-3">
-                <%= f.text_field :user_id, class: "form-control", placeholder: "User ID" %>
-            </div>
+                <div class="col-sm mx-3 my-3">
+                    <%= f.password_field :password, class: "form-control", placeholder: "Password" %>
+                </div>
 
-            <div class="col-sm mx-3 my-3">
-                <%= f.password_field :password, class: "form-control", placeholder: "Password" %>
-            </div>
+                <div class="col-sm mx-3 my-3">
+                    <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Password Confirmation" %>
+                </div>
 
-            <div class="col-sm mx-3 my-3">
-                <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Password Confirmation" %>
-            </div>
-
-            <div class="mx-3 my-3">
-                <%= f.submit "Save changes", class: "btn btn-primary w-100" %>
-            </div>
-        <% end %>
+                <div class="mx-3 my-3">
+                    <%= f.submit "Save changes", class: "btn btn-primary w-100" %>
+                </div>
+            <% end %>
+        </div>
     </div>
 </div>
