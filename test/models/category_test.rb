@@ -1,7 +1,6 @@
 require "test_helper"
 
 class CategoryTest < ActiveSupport::TestCase
-
   def setup
     @category = Category.new(category: "test")
   end
@@ -14,7 +13,7 @@ class CategoryTest < ActiveSupport::TestCase
     @category.category = " "
     assert_not @category.valid?
   end
-  
+
   test "category should be unique" do
     duplicate_category = @category.dup
     @category.save

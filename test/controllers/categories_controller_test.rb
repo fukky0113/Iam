@@ -1,7 +1,6 @@
 require "test_helper"
 
 class CategoriesControllerTest < ActionDispatch::IntegrationTest
-
   def setup
     @admin_user = users(:admin_user)
     @user = users(:user)
@@ -9,7 +8,7 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
     @unuser_category = categories(:two)
   end
 
-  #test new
+  # test new
   test "should get new" do
     log_in_as(@admin_user)
     get new_category_path
@@ -29,7 +28,7 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to login_url
   end
 
-  #test delete
+  # test delete
   test "Redirect at destroy time" do
     log_in_as(@admin_user)
     assert_difference 'Category.count', -1 do
@@ -56,21 +55,20 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to login_path
   end
 
-  #test create
+  # test create
   test "should create post" do
     log_in_as(@admin_user)
 
     assert_difference 'Category.count' do
-      post categories_path, params: {category: {category: "test"}}
+      post categories_path, params: { category: { category: "test" } }
     end
-    
     assert_redirected_to new_category_path
   end
 
   test "if you are not an administrator, should not create" do
     log_in_as(@user)
     assert_no_difference 'Category.count' do
-      post categories_path, params: {category: {category: "test"}}
+      post categories_path, params: { category: { category: "test" } }
     end
     assert_response :see_other
     follow_redirect!
@@ -79,10 +77,9 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
 
   test "if you are not log in, should not create" do
     assert_no_difference 'Category.count' do
-      post categories_path, params: {category: {category: "test"}}
+      post categories_path, params: { category: { category: "test" } }
     end
     assert_response :see_other
     assert_redirected_to login_path
   end
-
 end

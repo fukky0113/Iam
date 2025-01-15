@@ -17,27 +17,16 @@ class CategoriesController < ApplicationController
     end
   end
 
-  def show
-  end
-
-  def index
-  end
-
   def destroy
-    unless Post.find_by(category_id: params[:id])
-      Category.find(params[:id]).destroy
-      redirect_to new_category_path
-    end
-  end
+    return if Post.find_by(category_id: params[:id])
 
-  def edit
-  end
-
-  def update
+    Category.find(params[:id]).destroy
+    redirect_to new_category_path
   end
 
   private
-    def category_params
-      params.require(:category).permit(:category)
-    end
+
+  def category_params
+    params.require(:category).permit(:category)
+  end
 end

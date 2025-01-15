@@ -7,7 +7,6 @@ class PostsPostTest < ActionDispatch::IntegrationTest
     @admin_user = users(:admin_user)
     @user = users(:user)
   end
-  
 
   test "successful post" do
     log_in_as(@admin_user)
