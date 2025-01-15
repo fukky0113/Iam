@@ -2,6 +2,7 @@ require "test_helper"
 
 class PostsControllerTest < ActionDispatch::IntegrationTest
   def setup
+    @category = categories(:one)
     @post = posts(:post_hoge)
     @admin_user = users(:admin_user)
     @user = users(:user)
@@ -96,16 +97,18 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     # test create
     test "should create post" do
       log_in_as(@admin_user)
+
       assert_difference 'Post.count' do
-        post posts_path, params: {post: {title: "test"}}
+        post posts_path, params: {post: {title: "test", category_id: @category.id}}
       end
+      
       assert_redirected_to posts_path
     end
 
     test "if you are not an administrator, should not create" do
       log_in_as(@user)
       assert_no_difference 'Post.count' do
-        post posts_path, params: {post: {title: "test"}}
+        post posts_path, params: {post: {title: "test", category_id: "1"}}
       end
       assert_response :see_other
       follow_redirect!

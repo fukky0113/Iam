@@ -1,0 +1,29 @@
+<div class="card mx-5 my-3 shadow">
+    <div class="card-body">
+        <h1 class="text-center card-title">Category</h1>
+        <div class="mx-5 my-3">
+            <%= form_with(model: @category) do |f| %>
+                <%= f.text_field :category, placeholder: "カテゴリ", class: "my-3 w-100" %>
+                <%= f.submit "投稿", class: "btn btn-primary text-end" %>
+            <% end %>
+        </div>
+        
+        <h2 class="text-center card-title">index</h2>
+        <ol class="list-group mx-5 my-3 list-group-numbered text-start">
+            <% @categories.each do |category| %>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <%= category.category %>
+                    
+                        <% if current_user.admin? %>
+                            <%= link_to "delete", category, data: { "turbo-method": :delete,
+                                                                turbo_confirm: "You sure?" } %>
+                        <% end %>
+                    </div>
+                </li>
+
+
+            <% end %>
+        </ol>
+    </div>
+</div>

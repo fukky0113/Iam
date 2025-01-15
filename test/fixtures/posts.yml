@@ -1,7 +1,9 @@
 post_hoge:
   title: "hoge"
+  category: one
 
 <% 30.times do |n| %>
 post_<%= n %>:
   title:  <%= "post #{n}" %>
+  category: one
 <% end %>

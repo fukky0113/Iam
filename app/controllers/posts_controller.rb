@@ -17,6 +17,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @category = @post.category
   end
 
   def index
@@ -43,6 +44,6 @@ class PostsController < ApplicationController
 
   private
     def post_params
-      params.require(:post).permit(:title, :content)
+      params.require(:post).permit(:title, :content, :category_id)
     end
 end

@@ -3,6 +3,11 @@
         <h1 class="text-center card-title">Post</h1>
         <div class="mx-5 my-3">
             <%= form_with(model: @post) do |f| %>
+                <div>
+                    カテゴリ:
+                    <%= f.collection_select :category_id, Category.all, :id, :category %>
+                    <%= link_to "カテゴリの追加", new_category_path %>
+                </div>
                 <%= f.text_field :title, placeholder: "タイトル", class: "my-3 w-100" %>
                 <%= f.rich_text_area :content, placeholder: "本文", class: "my-3"  %>
                 <%= f.submit "投稿", class: "btn btn-primary text-end" %>
