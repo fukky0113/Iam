@@ -4,6 +4,7 @@
             <h1 class="card-title">Edit</h1>
 
             <%= form_with(model: @user) do |f| %>
+                <%= render 'shared/error_messages' %>
                 <div class="col-sm mx-3 my-3">
                     <%= f.text_field :name, class: "form-control", placeholder: "Name" %>
                 </div>
