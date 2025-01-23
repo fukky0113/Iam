@@ -58,10 +58,3 @@ jobs:
         run: bundle exec brakeman -q -w2
       - name: Lint Ruby files
         run: bundle exec rubocop --parallel
-        
-      # Renderへのデプロイ
-      - name: Render deploy service
-        uses: glarivie/render-deploy-service-action@v1.0.5
-        with:
-          apiKey: ${{ secrets.RENDER_API_KEY }}
-          serviceId: ${{ secrets.RENDER_SERVICE_ID }}
