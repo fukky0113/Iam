@@ -69,6 +69,7 @@ jobs:
   build_api:
     name: Api Container Build
     runs-on: ubuntu-latest
+    needs: [test_rails, test_rubocop]
     timeout-minutes: 10
 
     defaults:
@@ -81,7 +82,7 @@ jobs:
 
       - name: Build an Image and Run Tests
         run: |
-          docker image build --platform linux/amd64 --target production -t api_image:latest .
+          docker image build --platform linux/amd64 -t api_image:latest .
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -105,6 +106,7 @@ jobs:
   build_web:
     name: Web Container Build
     runs-on: ubuntu-latest
+    needs: [test_rails, test_rubocop]
     timeout-minutes: 10
     
     steps:
@@ -113,7 +115,7 @@ jobs:
 
       - name: Build an Image and Run Tests
         run: |
-          docker image build --platform linux/amd64 --target production -t web_image:latest .
+          docker image build --platform linux/amd64 -t web_image:latest .
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
