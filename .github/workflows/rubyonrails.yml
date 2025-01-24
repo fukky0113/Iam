@@ -13,8 +13,8 @@ on:
 
   env:
     AWS_REGION: ap-northeast-1
-    ECS_SERVICE: simple-cicd-service
-    ECS_CLUSTER: simple-cicd-cluster
+    ECS_SERVICE: Iam-service
+    ECS_CLUSTER: Iam-cluster
     ECS_TASK_DEFINITION: .aws/task-definition.json
 
 test_rails:
