@@ -94,33 +94,33 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to login_path
   end
 
-    # test create
-    test "should create post" do
-      log_in_as(@admin_user)
+  # test create
+  test "should create post" do
+    log_in_as(@admin_user)
 
-      assert_difference 'Post.count' do
-        post posts_path, params: {post: {title: "test", category_id: @category.id}}
-      end
-      
-      assert_redirected_to posts_path
+    assert_difference 'Post.count' do
+      post posts_path, params: {post: {title: "test", category_id: @category.id}}
     end
+    
+    assert_redirected_to posts_path
+  end
 
-    test "if you are not an administrator, should not create" do
-      log_in_as(@user)
-      assert_no_difference 'Post.count' do
-        post posts_path, params: {post: {title: "test", category_id: "1"}}
-      end
-      assert_response :see_other
-      follow_redirect!
-      assert_redirected_to posts_path
+  test "if you are not an administrator, should not create" do
+    log_in_as(@user)
+    assert_no_difference 'Post.count' do
+      post posts_path, params: {post: {title: "test", category_id: "1"}}
     end
-  
-    test "if you are not log in, should not create" do
-      assert_no_difference 'Post.count' do
-        post posts_path, params: {post: {title: "test"}}
-      end
-      assert_response :see_other
-      assert_redirected_to login_path
+    assert_response :see_other
+    follow_redirect!
+    assert_redirected_to posts_path
+  end
+
+  test "if you are not log in, should not create" do
+    assert_no_difference 'Post.count' do
+      post posts_path, params: {post: {title: "test"}}
     end
-  
+    assert_response :see_other
+    assert_redirected_to login_path
+  end
+
 end
