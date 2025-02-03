@@ -32,11 +32,11 @@ Ruby on RailsやAWSを用いた開発の実験ラボも兼ねています。
 # 使用技術
 |Category|Technology Stack|
 |---|---|
-|Frontend|Bootstrap|
-|Backend|Ruby, RubyonRails, Puma, Nginx|
+|Frontend|Bootstrap(v5.3.3)|
+|Backend|Ruby(v3.2.1), RubyonRails(v7.0.8.7), Puma(v5.6.9), Nginx(v1.26)|
 |Infrastructure|AWS(後述)|
-|Database|Postgres|
-|Environment setup|Docker|
+|Database|Postgres(v16.3)|
+|Environment setup|Docker(v27.3.1)|
 |CI/CD|GithubActions|
 
 # 構成図

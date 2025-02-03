@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   before_action :logged_in_user, only: [:index, :edit, :update, :new, :create, :show, :destroy] 
-  before_action :correct_user, only: []
   before_action :admin_user, only: [:destroy, :show, :edit, :update, :new, :create, :index]
 
   def index 
@@ -46,8 +45,6 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:name, :user_id, :password, :password_confirmation)
     end
-
-
 
     def correct_user
       @user = User.find(params[:id])
