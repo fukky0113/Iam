@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
-  before_action :logged_in_user, only: [:index, :new, :create, :show, :destroy]
-  before_action :admin_user, only: [:new, :create, :destroy]
+  before_action :logged_in_user, only: [:index, :new, :create, :show, :destroy, :edit, :update]
+  before_action :admin_user, only: [:new, :create, :destroy, :edit, :update]
 
   def new
     @post = Post.new
@@ -36,7 +36,7 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-      redirect_to @post
+      redirect_to @post, status: :see_other
     else
       render 'edit', status: :unprocessable_entity
     end
