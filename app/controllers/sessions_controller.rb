@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  before_action :logged_out_user, only: [:new]
+  before_action :logged_out_user, only: [:new, :create]
   def new
   end
 
@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       reset_session
       params[:session][:remember_me] == '1' ? remember(user) : forget(user)
       log_in user
-      redirect_to forwarding_url || posts_path
+      redirect_to forwarding_url || posts_path, status: :see_other
     else
       flash[:danger] = 'Invalid email/password combination'
       render 'new', status: :unprocessable_entity
