@@ -176,5 +176,4 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     @post.reload
     assert_not_equal "test", @post.title
   end
-
 end

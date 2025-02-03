@@ -21,27 +21,27 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
   # test create
   test "should create session" do
     get login_path
-    post login_path, params: { session: {user_id:  "@duchess",
-                                      password: "password",
-                                      password_confirmation: "password"}}
+    post login_path, params: { session: { user_id: "@duchess",
+                                          password: "password",
+                                          password_confirmation: "password" } }
     assert_response :see_other
     assert_redirected_to posts_path
   end
 
   test "should not create session (incorrect)" do
     get login_path
-    post login_path, params: { session: {user_id:  "@incorrect",
-                                      password: "incorrect",
-                                      password_confirmation: "incorrect"}}
+    post login_path, params: { session: { user_id: "@incorrect",
+                                          password: "incorrect",
+                                          password_confirmation: "incorrect" } }
     assert_response :unprocessable_entity
     assert_template "sessions/new"
   end
 
   test "should not create session (log in)" do
     log_in_as(@user)
-    post login_path, params: { session: {user_id:  "@duchess",
-                                      password: "password",
-                                      password_confirmation: "password"}}
+    post login_path, params: { session: { user_id: "@duchess",
+                                          password: "password",
+                                          password_confirmation: "password" } }
     assert_response :see_other
     assert_redirected_to posts_path
   end
