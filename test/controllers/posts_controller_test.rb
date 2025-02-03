@@ -151,23 +151,30 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   # test update
   test "should update post" do
     log_in_as(@admin_user)
-    patch post_path(@post), params: {post: {title: "test1"}}
+    get edit_post_path(@post)
+    patch post_path(@post), params: {post: {title: "test", category_id: @category.id}}
     assert_response :see_other
     assert_redirected_to @post
+    @post.reload
+    assert_equal "test", @post.title
   end
 
   test "should not update post(not administrator)" do
     log_in_as(@user)
-    patch post_path(@post), params: {post: {title: "test1"}}
+    patch post_path(@post), params: {post: {title: "test", category_id: @category.id}}
     assert_response :see_other
     follow_redirect!
     assert_redirected_to posts_path
+    @post.reload
+    assert_not_equal "test", @post.title
   end
 
   test "should not update post(not post)" do
-    patch post_path(@post), params: {post: {title: "test1"}}
+    patch post_path(@post), params: {post: {title: "test", category_id: @category.id}}
     assert_response :see_other
     assert_redirected_to login_path
+    @post.reload
+    assert_not_equal "test", @post.title
   end
 
 end
