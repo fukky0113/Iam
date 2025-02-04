@@ -152,7 +152,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   test "should update post" do
     log_in_as(@admin_user)
     get edit_post_path(@post)
-    patch post_path(@post), params: {post: {title: "test", category_id: @category.id}}
+    patch post_path(@post), params: {post: {title: "test", category_id: @category.id, user_id: @admin_user.id}}
     assert_response :see_other
     assert_redirected_to @post
     @post.reload
