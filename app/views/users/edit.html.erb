@@ -23,6 +23,12 @@
                     <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Password Confirmation" %>
                 </div>
 
+                <% if @user.admin? %>
+                    <div class="col-sm mx-3 my-3">
+                        <%= f.text_area :profile, class: "form-control", placeholder: "Profile" %>
+                    </div>
+                <% end %>
+
                 <div class="mx-3 my-3">
                     <%= f.submit "Save changes", class: "btn btn-primary w-100" %>
                 </div>

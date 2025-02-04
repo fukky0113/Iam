@@ -2,26 +2,30 @@
 
 <h1 class="text-center my-3">Welcome to My Blog</h1>
 
-<% @post.select(:category_id).distinct.each do |category| %>
-    <h2><%= category.category.category %></h2>
-    <div class="row">
-        <% @post.where(category_id: category.category_id).each do |post| %>
-            <div class="col-md-4">
-                <div class="card mx-1 my-3 shadow">
-                    <div class="card-body">
-                        <h5 class="card-title"><%= string_slice_0to15(post.title) %></h5>
-                        <p class="card-text"><%= string_slice_0to20(post.content.to_plain_text) %></p>
-                        <div><%= link_to "Read More", post_path(post), class: "btn btn-primary" %></div>
+<div class="mx-5">
+    <h2>プロフィール</h2>
+    <p class="my-3"><%= @posted_user.profile %></p>
+    <% @post.select(:category_id).distinct.each do |category| %>
+        <h2><%= category.category.category %></h2>
+        <div class="row">
+            <% @post.where(category_id: category.category_id).each do |post| %>
+                <div class="col-md-4">
+                    <div class="card mx-1 my-3 shadow">
+                        <div class="card-body">
+                            <h5 class="card-title"><%= string_slice_0to15(post.title) %></h5>
+                            <p class="card-text"><%= string_slice_0to20(post.content.to_plain_text) %></p>
+                            <div><%= link_to "Read More", post_path(post), class: "btn btn-primary" %></div>
 
-                        <% if current_user.admin? %>
-                            <%= link_to "edit", edit_post_path(post) %>
-                            |
-                            <%= link_to "delete", post, data: { "turbo-method": :delete,
-                                                                turbo_confirm: "You sure?" } %>
-                        <% end %>
+                            <% if current_user.admin? %>
+                                <%= link_to "edit", edit_post_path(post) %>
+                                |
+                                <%= link_to "delete", post, data: { "turbo-method": :delete,
+                                                                    turbo_confirm: "You sure?" } %>
+                            <% end %>
+                        </div>
                     </div>
                 </div>
-            </div>
-        <% end %>
-    </div>
-<% end %>
+            <% end %>
+        </div>
+    <% end %>
+</div>
