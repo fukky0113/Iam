@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+    has_many :user_skills, foreign_key: :user_id
+    has_many :skills, through: :user_skills
+
     has_many :posts
 
     attr_accessor :remember_token

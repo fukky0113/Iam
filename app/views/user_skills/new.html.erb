@@ -1,0 +1,25 @@
+<% provide(:title, 'Skill Edit') %>
+
+<h1>UserSkills#new</h1>
+
+<div class="card mx-5 my-3 shadow">
+    <div class="card-body">
+        <h1 class="text-center card-title">Skill</h1>
+        <div class="mx-5 my-3">
+            <%= form_with(model: [@user, @user_skills]) do |f| %>
+                <div>
+                    スキル:
+                    <%= f.collection_select :skill_id, Skill.all, :id, :skill_name %>
+                </div>
+
+                <div class="mx-3 my-3">
+                    <%= f.text_area :detail, class: "form-control", placeholder: "Detail" %>
+                </div>
+
+                <div class="mx-3 my-3">
+                    <%= f.submit "Create Skill Detail", class: "btn btn-primary w-100" %>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>

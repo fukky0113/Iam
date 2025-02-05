@@ -8,7 +8,9 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    @post.user_id = current_user.id
+
+    # ポスト可能ユーザーを限定
+    @post.user_id = User.first.id
     if @post.save
       redirect_to posts_path
     else
@@ -22,8 +24,12 @@ class PostsController < ApplicationController
   end
 
   def index
+    # ポスト可能ユーザーを限定
     @posted_user = User.first
+
     @post = @posted_user.posts
+    @user_skill = @posted_user.user_skills
+    @skill = @posted_user.skills
   end
 
   def destroy
