@@ -1,7 +1,9 @@
 class UserSkillsController < ApplicationController
   def new
     @user_skills = UserSkill.new
-    @user = User.find(params[:user_id])
+
+    # ポスト可能ユーザーを限定
+    @user = User.first
   end
 
   def create
@@ -14,6 +16,28 @@ class UserSkillsController < ApplicationController
     else
       render 'new', status: :unprocessable_entity
     end
+  end
+
+  def edit
+    @user_skills = UserSkill.find(params[:id])
+
+    # ポスト可能ユーザーを限定
+    @user = User.first
+  end
+
+  def update
+    @user_skills = UserSkill.find(params[:id])
+
+    if @user_skills.update(user_skills_params)
+      redirect_to posts_path
+    else
+      render 'edit', status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    UserSkill.find(params[:id]).destroy
+    redirect_to posts_path, status: :see_other
   end
 
   private
