@@ -14,5 +14,6 @@ Rails.application.routes.draw do
     resources :companies, only: [:new, :create, :destroy]
     resources :user_skills, only: [:new, :create, :edit, :update, :destroy]
     resources :projects, only: [:new, :create, :edit, :update, :destroy]
+    resources :project_skills, only: [:new, :create, :destroy] 
   end
 end

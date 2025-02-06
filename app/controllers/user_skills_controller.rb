@@ -11,12 +11,12 @@ class UserSkillsController < ApplicationController
 
   def create
     @user_skills = UserSkill.new(user_skills_params)
-    # @user = User.first
+
     # ポスト可能ユーザーを限定
-    # @user_skills.user_id = current_user.id
     @user_skills.user_id = User.first.id
 
-    if @user_skills.save!
+    if @user_skills.save
+      render template: "ProjectSkills/create"
       redirect_to posts_path, status: :see_other
     else
       render 'new', status: :unprocessable_entity
