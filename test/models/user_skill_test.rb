@@ -1,7 +1,6 @@
 require "test_helper"
 
 class UserSkillTest < ActiveSupport::TestCase
-
   def setup
     @user_skill = UserSkill.new(user_id: 1, skill_id: 1)
   end
@@ -11,5 +10,4 @@ class UserSkillTest < ActiveSupport::TestCase
     @user_skill.save
     assert_not @user_skill.valid?
   end
-
 end

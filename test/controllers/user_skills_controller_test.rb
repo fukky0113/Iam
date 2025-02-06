@@ -7,7 +7,7 @@ class UserSkillsControllerTest < ActionDispatch::IntegrationTest
     @skill = skills(:one)
     @user_skills = user_skills(:one)
   end
-  
+
   # test new
   test "should get new" do
     log_in_as(@admin_user)
@@ -30,11 +30,11 @@ class UserSkillsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to login_path
   end
 
-  #test create
+  # test create
   test "should create user_skills" do
     log_in_as(@admin_user)
     assert_difference 'UserSkill.count' do
-      post user_user_skills_path(@admin_user), params: { user_skill: {user_id: @admin_user.id, skill_id: @skill.id} }
+      post user_user_skills_path(@admin_user), params: { user_skill: { user_id: @admin_user.id, skill_id: @skill.id } }
     end
     assert_response :see_other
     assert_redirected_to posts_path
@@ -43,7 +43,7 @@ class UserSkillsControllerTest < ActionDispatch::IntegrationTest
   test "should create user_skills (not admin)" do
     log_in_as(@user)
     assert_no_difference 'UserSkill.count' do
-      post user_user_skills_path(@user), params: { user_skill: {user_id: @admin_user.id, skill_id: @skill.id} }
+      post user_user_skills_path(@user), params: { user_skill: { user_id: @admin_user.id, skill_id: @skill.id } }
     end
     assert_response :see_other
     follow_redirect!
@@ -52,7 +52,7 @@ class UserSkillsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create user_skills (not log in)" do
     assert_no_difference 'UserSkill.count' do
-      post user_user_skills_path(@admin_user), params: { user_skill: {user_id: @admin_user.id, skill_id: @skill.id} }
+      post user_user_skills_path(@admin_user), params: { user_skill: { user_id: @admin_user.id, skill_id: @skill.id } }
     end
     assert_response :see_other
     assert_redirected_to login_path
@@ -80,11 +80,11 @@ class UserSkillsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to login_path
   end
 
-  #test update
+  # test update
   test "should update user_skills" do
     log_in_as(@admin_user)
     get edit_user_user_skill_path(user_id: @admin_user.id, id: @user_skills.id)
-    patch user_user_skill_path(user_id: @admin_user.id, id: @user_skills.id), params: { user_skill: {user_id: @admin_user.id, skill_id: @skill.id, detail: "test"} }
+    patch user_user_skill_path(user_id: @admin_user.id, id: @user_skills.id), params: { user_skill: { user_id: @admin_user.id, skill_id: @skill.id, detail: "test" } }
     assert_response :see_other
     assert_redirected_to posts_path
     @user_skills.reload
@@ -94,7 +94,7 @@ class UserSkillsControllerTest < ActionDispatch::IntegrationTest
   test "should update user_skills (not admin)" do
     log_in_as(@user)
     get edit_user_user_skill_path(user_id: @user.id, id: @user_skills.id)
-    patch user_user_skill_path(user_id: @user.id, id: @user_skills.id), params: { user_skill: {user_id: @admin_user.id, skill_id: @skill.id, detail: "test"} }
+    patch user_user_skill_path(user_id: @user.id, id: @user_skills.id), params: { user_skill: { user_id: @admin_user.id, skill_id: @skill.id, detail: "test" } }
     assert_response :see_other
     follow_redirect!
     assert_redirected_to posts_path
@@ -102,7 +102,7 @@ class UserSkillsControllerTest < ActionDispatch::IntegrationTest
 
   test "should update user_skills (not log in)" do
     get edit_user_user_skill_path(user_id: @user.id, id: @user_skills.id)
-    patch user_user_skill_path(user_id: @user.id, id: @user_skills.id), params: { user_skill: {user_id: @admin_user.id, skill_id: @skill.id, detail: "test"} }
+    patch user_user_skill_path(user_id: @user.id, id: @user_skills.id), params: { user_skill: { user_id: @admin_user.id, skill_id: @skill.id, detail: "test" } }
     assert_response :see_other
     assert_redirected_to login_path
   end
@@ -134,5 +134,4 @@ class UserSkillsControllerTest < ActionDispatch::IntegrationTest
     assert_response :see_other
     assert_redirected_to login_path
   end
-
 end
