@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_02_05_004332) do
+ActiveRecord::Schema[7.0].define(version: 2025_02_06_013727) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -58,12 +58,31 @@ ActiveRecord::Schema[7.0].define(version: 2025_02_05_004332) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "companies", force: :cascade do |t|
+    t.string "company_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.date "start_on"
+    t.date "end_on"
+    t.integer "user_id"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "category_id"
     t.integer "user_id"
+  end
+
+  create_table "projects", force: :cascade do |t|
+    t.string "summary"
+    t.string "incharge"
+    t.string "achivement"
+    t.integer "user_id"
+    t.integer "company_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "skills", force: :cascade do |t|
@@ -79,6 +98,7 @@ ActiveRecord::Schema[7.0].define(version: 2025_02_05_004332) do
     t.string "detail"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id", "skill_id"], name: "index_user_skills_on_user_id_and_skill_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|

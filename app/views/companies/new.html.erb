@@ -1,0 +1,15 @@
+<div class="card mx-5 my-3 shadow">
+    <div class="card-body">
+        <h1 class="text-center card-title">Category</h1>
+        <div class="mx-5 my-3">
+            <%= form_with(model: [@user, @company]) do |f| %>
+                <%= f.text_field :company_name, class: "my-3 w-100" %>
+                <%= f.submit "Create Company Detail", class: "btn btn-primary text-end" %>
+            <% end %>
+        </div>
+    </div>
+
+    <% @companies.each do |company| %>
+        <%= company.company_name %>
+    <% end %>    
+</div>
