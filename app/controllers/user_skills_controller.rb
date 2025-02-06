@@ -1,4 +1,7 @@
 class UserSkillsController < ApplicationController
+  before_action :logged_in_user, only: [:new, :create, :destroy, :edit, :update]
+  before_action :admin_user, only: [:new, :create, :destroy, :edit, :update]
+
   def new
     @user_skills = UserSkill.new
 
@@ -8,11 +11,13 @@ class UserSkillsController < ApplicationController
 
   def create
     @user_skills = UserSkill.new(user_skills_params)
-
+    # @user = User.first
     # ポスト可能ユーザーを限定
-    @user_skills.user_id = current_user.id
-    if @user_skills.save
-      redirect_to posts_path
+    # @user_skills.user_id = current_user.id
+    @user_skills.user_id = User.first.id
+
+    if @user_skills.save!
+      redirect_to posts_path, status: :see_other
     else
       render 'new', status: :unprocessable_entity
     end
@@ -29,7 +34,7 @@ class UserSkillsController < ApplicationController
     @user_skills = UserSkill.find(params[:id])
 
     if @user_skills.update(user_skills_params)
-      redirect_to posts_path
+      redirect_to posts_path, status: :see_other
     else
       render 'edit', status: :unprocessable_entity
     end

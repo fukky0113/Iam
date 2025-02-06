@@ -20,7 +20,8 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     log_in_as(@user)
     get new_post_path
     assert_response :see_other
-    assert_redirected_to root_url
+    follow_redirect!
+    assert_redirected_to posts_path
   end
 
   test "should not get new (not log in)" do

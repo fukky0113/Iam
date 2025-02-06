@@ -12,7 +12,7 @@ class PostsController < ApplicationController
     # ポスト可能ユーザーを限定
     @post.user_id = User.first.id
     if @post.save
-      redirect_to posts_path
+      redirect_to posts_path, status: :see_other
     else
       render 'new', status: :unprocessable_entity
     end

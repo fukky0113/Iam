@@ -11,6 +11,6 @@ Rails.application.routes.draw do
   resources :skills
 
   resources :users do
-    resources :user_skills, only: [:new, :create, :edit, :update, :destroy], params: :id
+    resources :user_skills, only: [:new, :create, :edit, :update, :destroy]
   end
 end

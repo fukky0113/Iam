@@ -7,21 +7,6 @@
     <h2>プロフィール</h2>
     <p class="my-3"><%= @posted_user.profile %></p>
     
-    <h2>スキルマップ</h2>
-    <% if current_user.admin?  %>
-        <%= link_to "new", new_user_user_skill_path(user_id: @posted_user) %>
-    <% end %>
-    <div>
-        <% @user_skill.sort_by {|sorted_user_skill| sorted_user_skill.id }.each do |u_s| %>
-            <div>
-                <%= @skill.find(u_s.skill_id).skill_name %>
-                <%= u_s.detail %>
-
-                <%= link_to "edit", edit_user_user_skill_path(user_id: @posted_user, id: u_s.id) %>
-                <%= link_to "delete", user_user_skill_path(user_id: @posted_user, id: u_s.id), data: { "turbo-method": :delete, turbo_confirm: "You sure?" }  %>
-            </div>
-        <% end %>
-    </div>
-
+    <%= render 'posts/skill' %>
     <%= render 'posts/post' %>
 </div>
