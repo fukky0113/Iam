@@ -10,6 +10,12 @@
     </div>
 
     <% @companies.each do |company| %>
-        <%= company.company_name %>
+        <div>
+            <%= company.company_name %>
+            
+            <% if current_user.admin?  %>
+                <%= link_to "delete", user_company_path(user_id: @user, id: company.id), data: { "turbo-method": :delete, turbo_confirm: "You sure?" }  %>
+            <% end %>
+        </div>
     <% end %>    
 </div>

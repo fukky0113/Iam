@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :projects
   has_many :companies
 
   # user-skillの関連を定義

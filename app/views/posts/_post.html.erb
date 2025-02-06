@@ -1,5 +1,6 @@
+<h2>その他</h2>
 <% @post.select(:category_id).distinct.each do |category| %>
-    <h2><%= category.category.category %></h2>
+    <h3><%= category.category.category %></h3>
     <div class="row">
         <% @post.where(category_id: category.category_id).each do |post| %>
             <div class="col-md-4">

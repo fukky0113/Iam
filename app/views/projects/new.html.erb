@@ -1,0 +1,20 @@
+<% provide(:title, 'Project New') %>
+
+<div class="card mx-5 my-3 shadow">
+    <div class="card-body">
+        <h1 class="text-center card-title">Project History</h1>
+        <div class="mx-5 my-3">
+            <%= form_with(model: [@user, @project]) do |f| %>
+                <div>
+                    会社:
+                    <%= f.collection_select :company_id, Company.all, :id, :company_name %>
+                    <%= link_to "カテゴリの追加", new_user_company_path %>
+                </div>
+                <%= f.text_area :summary, placeholder: "Summay", class: "my-3 w-100" %>
+                <%= f.text_area :incharge, placeholder: "InCharge", class: "my-3 w-100" %>
+                <%= f.text_area :achivement, placeholder: "Achivement", class: "my-3 w-100"  %>
+                <%= f.submit "投稿", class: "btn btn-primary text-end" %>
+            <% end %>
+        </div>
+    </div>
+</div>

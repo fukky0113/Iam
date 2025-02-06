@@ -30,6 +30,7 @@ class PostsController < ApplicationController
     @post = @posted_user.posts
     @user_skill = @posted_user.user_skills
     @skill = @posted_user.skills
+    @project = @posted_user.projects
   end
 
   def destroy

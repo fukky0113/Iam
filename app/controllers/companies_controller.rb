@@ -19,19 +19,11 @@ class CompaniesController < ApplicationController
     end
   end
 
-  def show
-  end
-
-  def index
-  end
-
   def destroy
-  end
+    return if Project.find_by(company_id: params[:id])
 
-  def edit
-  end
-
-  def update
+    Company.find(params[:id]).destroy
+    redirect_to new_user_company_path, status: :see_other
   end
 
   private
