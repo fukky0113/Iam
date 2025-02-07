@@ -6,9 +6,9 @@ class ProjectSkillsController < ApplicationController
     @project_skill = ProjectSkill.new(project_skills_params)
 
     if @project_skill.save
-      redirect_to posts_path, status: :see_other
+      render 'projects/new', status: :see_other
     else
-      render 'new', status: :unprocessable_entity
+      render 'projects/new', status: :unprocessable_entity
     end
   end
 
@@ -16,7 +16,7 @@ class ProjectSkillsController < ApplicationController
   end
 
   def project_skills_params
-    params.require(:project_skills).permit(:project_id, skill_ids: [])
+    params.require(:project_skill).permit(:skill_ids)
   end
 
 end
