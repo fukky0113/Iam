@@ -5,4 +5,8 @@ class ProjectSkill < ApplicationRecord
   def ProjectSkill.relation_create(project_id, skill_id)
     ProjectSkill.create(project_id: project_id, skill_id: skill_id)
   end
+
+  def ProjectSkill.relation_destroy(project_id)
+    project_id.destroy
+  end
 end

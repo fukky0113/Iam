@@ -14,4 +14,18 @@ class Project < ApplicationRecord
       end
     end
   end
+
+  def update_skills(project_id, skill_ids)
+    projectskills = ProjectSkill.where(project_id: project_id)
+    
+    projectskills.each do |project_skill|
+      ProjectSkill.relation_destroy(project_skill)
+    end
+
+    skill_ids.each do |skill_id|
+      if !(skill_id.blank?)
+        ProjectSkill.relation_create(project_id, skill_id)
+      end
+    end
+  end
 end
