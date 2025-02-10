@@ -16,8 +16,8 @@
                     <% end %>
                 </p>
 
-                <p>実績　 : <br><%= project.achivement %></p>
-                
+                <p>実績　 : <br><%=safe_join(project.achivement.split("\n"),tag(:br))%></p>
+
                 <% if current_user.admin?  %>
                     <%= link_to "edit", edit_user_project_path(user_id: @posted_user, id: project.id) %>
                     <%= link_to "delete", user_project_path(user_id: @posted_user, id: project.id), data: { "turbo-method": :delete, turbo_confirm: "You sure?" }  %>

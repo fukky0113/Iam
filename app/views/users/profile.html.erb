@@ -6,6 +6,9 @@
             <h1 class="card-title">Edit</h1>
 
             <%= form_with(model: @user) do |f| %>
+                <%= f.label :image, 'プロフィール画像' %>
+                <%= f.file_field :image, required: true %>
+
                 <%= render 'shared/error_messages' %>
 
                 <div class="col-sm mx-3 my-3">

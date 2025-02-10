@@ -1,9 +1,9 @@
 <div class="card mb-3">
     <div class="row g-0 my-3">
-        <div class="col-md-4">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/c/cb/The_Blue_Marble_%28remastered%29.jpg" class="d-block mx-auto img-fluid rounded-circle" alt="..." style="width: auto; height: 300px">
+        <div class="col-md-2">
+            <%= image_tag(@posted_user.image, class: "d-block mx-auto img-fluid ", style: "border-radius: 50%; width: 200px; height: 200px; object-fit:cover;")%>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-10">
             <div class="card-body">
                 <h2 class="card-title">プロフィール</h2>
                 <%= link_to "edit", profile_user_path(@posted_user) %>

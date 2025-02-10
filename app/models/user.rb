@@ -1,12 +1,14 @@
 class User < ApplicationRecord
   has_many :projects
   has_many :companies
+  has_many :posts
 
   # user-skillの関連を定義
   has_many :user_skills, foreign_key: :user_id
   has_many :skills, through: :user_skills
-  
-  has_many :posts
+
+  # ActiveStorageによるimageのアップロード
+  has_one_attached :image
 
   attr_accessor :remember_token
 
