@@ -1,13 +1,18 @@
 <div class="card mb-3">
     <div class="row g-0 my-3">
         <div class="col-md-2">
-            <%= image_tag(@posted_user.image, class: "d-block mx-auto img-fluid ", style: "border-radius: 50%; width: 200px; height: 200px; object-fit:cover;")%>
+            <% if @posted_user.image.attached? %>
+                <%= image_tag(@posted_user.image, class: "d-block mx-auto img-fluid ", style: "border-radius: 50%; width: 200px; height: 200px; object-fit:cover;")%>
+            <% end %>
         </div>
         <div class="col-md-10">
             <div class="card-body">
                 <h2 class="card-title">プロフィール</h2>
                 <%= link_to "edit", profile_user_path(@posted_user) %>
-                <p class="card-text"><%=safe_join(@posted_user.profile.split("\n"),tag(:br))%></p>
+                
+                <% if @posted_user.profile.present? %>
+                    <p class="card-text"><%=safe_join(@posted_user.profile.split("\n"),tag(:br))%></p>
+                <% end %>
             </div>
         </div>
     </div>

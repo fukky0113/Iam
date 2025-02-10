@@ -5,21 +5,39 @@
         <h1 class="text-center card-title">Project History</h1>
         <div class="mx-5 my-3">
             <%= form_with(model: [@user, @project]) do |f| %>
-                <div>
-                    会社:
+                <div class="my-1">
+                    会社　: 
                     <%= f.collection_select :company_id, Company.all, :id, :company_name %>
-                    <%= link_to "カテゴリの追加", new_user_company_path %>
+                    <%= link_to "会社の追加", new_user_company_path %>
                 </div>
-                <%= f.fields_for :project_skill do |i| %>
-                    <div>
-                        スキル:
-                        <%= i.collection_select :skill_id, Skill.all, :id, :skill_name, {}, {multiple: true} %>
-                        <%= link_to "スキルの追加", new_user_project_skill_path %>
-                    </div>
-                <% end %>
-                <%= f.text_area :summary, placeholder: "Summay", class: "my-3 w-100" %>
-                <%= f.text_area :incharge, placeholder: "InCharge", class: "my-3 w-100" %>
-                <%= f.text_area :achivement, placeholder: "Achivement", class: "my-3 w-100"  %>
+
+                <div class="my-1">
+                    開始日:      
+                    <%= f.date_field :start_on %>
+                </div>
+
+                <div class="my-1">
+                    終了日: 
+                    <%= f.date_field :end_on %>
+                </div>
+
+                <div class="my-1">
+                    <%= f.fields_for :project_skill do |i| %>
+                        スキル:<br>
+                        <div class="mx-5">
+                            <%= i.collection_select :skill_id, Skill.all, :id, :skill_name, {}, {multiple: true}%>
+                        </div>
+                    <% end %>
+                </div>
+
+                Summay:
+                <%= f.text_area :summary, placeholder: "Summay", class: "mb-3 w-100" %>
+
+                InCharge:
+                <%= f.text_area :incharge, placeholder: "InCharge", class: "mb-3 w-100" %>
+
+                Achivement:
+                <%= f.text_area :achivement, placeholder: "Achivement", class: "mb-3 w-100"  %>
                 <%= f.submit "投稿", class: "btn btn-primary text-end" %>
             <% end %>
         </div>

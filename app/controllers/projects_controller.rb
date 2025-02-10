@@ -51,8 +51,7 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:summary, :incharge, :achivement, :user_id, :company_id)
-    # params.require(:project).permit(project_skill:[skill_id:[]])
+    params.require(:project).permit(:summary, :incharge, :achivement, :user_id, :company_id, :start_on, :end_on)
   end
 
   def project_skill_params
