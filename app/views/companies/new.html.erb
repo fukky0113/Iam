@@ -7,15 +7,20 @@
                 <%= f.submit "Create Company Detail", class: "btn btn-primary text-end" %>
             <% end %>
         </div>
-    </div>
-
-    <% @companies.each do |company| %>
-        <div>
-            <%= company.company_name %>
             
-            <% if current_user.admin?  %>
-                <%= link_to "delete", user_company_path(user_id: @user, id: company.id), data: { "turbo-method": :delete, turbo_confirm: "You sure?" }  %>
-            <% end %>
-        </div>
-    <% end %>    
+        <h2 class="text-center card-title">index</h2>
+        <ol class="list-group mx-5 my-3 list-group-numbered text-start">
+
+            <% @companies.each do |company| %>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <%= company.company_name %>
+                        <% if current_user.admin?  %>
+                            <%= link_to "delete", user_company_path(user_id: @user, id: company.id), data: { "turbo-method": :delete, turbo_confirm: "You sure?" }  %>
+                        <% end %>
+                    </div>
+                </li>
+            <% end %>    
+        </ol>
+    </div>
 </div>

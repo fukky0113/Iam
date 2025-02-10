@@ -8,13 +8,12 @@
                 <div>
                     会社:
                     <%= f.collection_select :company_id, Company.all, :id, :company_name %>
-                    <%= link_to "カテゴリの追加", new_user_company_path %>
+                    <%= link_to "会社の追加", new_user_company_path %>
                 </div>
                 <%= f.fields_for :project_skill do |i| %>
                     <div>
                         スキル:
                         <%= i.collection_select :skill_id, Skill.all, :id, :skill_name, {}, {multiple: true} %>
-                        <%= link_to "スキルの追加", new_user_project_skill_path %>
                     </div>
                 <% end %>
                 <%= f.text_area :summary, placeholder: "Summay", class: "my-3 w-100" %>
