@@ -1,19 +1,28 @@
-<h2>プロジェクト経歴</h2>
-<%= link_to "new", new_user_project_path(@posted_user) %>
+<div class="card">
+    <div class="card-body">
+        <h2>プロジェクト経歴</h2>
+        <%= link_to "new", new_user_project_path(@posted_user) %>
 
-<% @project.sort_by {|sorted_project| sorted_project.id }.each do |project| %>
-    <div>
-        <%= project.company.company_name %>
-        <% project.skills.each do |skill| %>
-            <%= skill.skill_name %>
-        <% end %>
-        <%= project.summary %>
-        <%= project.incharge %>
-        <%= project.achivement %>
-        
-        <% if current_user.admin?  %>
-            <%= link_to "edit", edit_user_project_path(user_id: @posted_user, id: project.id) %>
-            <%= link_to "delete", user_project_path(user_id: @posted_user, id: project.id), data: { "turbo-method": :delete, turbo_confirm: "You sure?" }  %>
+        <% @project.sort_by {|sorted_project| sorted_project.id }.each do |project| %>
+            <div class="rounded bg-secondary-subtle my-3">
+                <p>企業名 : <%= project.company.company_name %></p>
+                <p>概要　 : <%= project.summary %></p>
+
+                <p>担当　 : <%= project.incharge %></p>                
+                
+                <p>スキル :
+                    <% project.skills.each do |skill| %>
+                        <%= skill.skill_name %>
+                    <% end %>
+                </p>
+
+                <p>実績　 : <br><%= project.achivement %></p>
+                
+                <% if current_user.admin?  %>
+                    <%= link_to "edit", edit_user_project_path(user_id: @posted_user, id: project.id) %>
+                    <%= link_to "delete", user_project_path(user_id: @posted_user, id: project.id), data: { "turbo-method": :delete, turbo_confirm: "You sure?" }  %>
+                <% end %>
+            </div>
         <% end %>
     </div>
-<% end %>
+</div>

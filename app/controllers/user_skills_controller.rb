@@ -16,7 +16,6 @@ class UserSkillsController < ApplicationController
     @user_skills.user_id = User.first.id
 
     if @user_skills.save
-      render template: "ProjectSkills/create"
       redirect_to posts_path, status: :see_other
     else
       render 'new', status: :unprocessable_entity

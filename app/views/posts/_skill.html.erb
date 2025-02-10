@@ -1,17 +1,24 @@
-<h2>スキルマップ</h2>
-<% if current_user.admin?  %>
-    <%= link_to "new", new_user_user_skill_path(user_id: @posted_user) %>
-<% end %>
-<div>
-    <% @user_skill.sort_by {|sorted_user_skill| sorted_user_skill.id }.each do |u_s| %>
+<div class="card">
+    <div class="card-body">
+        <h2>スキルマップ</h2>
+        <% if current_user.admin?  %>
+            <%= link_to "new", new_user_user_skill_path(user_id: @posted_user) %>
+        <% end %>
         <div>
-            <%= @skill.find(u_s.skill_id).skill_name %>
-            <%= u_s.detail %>
-            
-            <% if current_user.admin?  %>
-                <%= link_to "edit", edit_user_user_skill_path(user_id: @posted_user, id: u_s.id) %>
-                <%= link_to "delete", user_user_skill_path(user_id: @posted_user, id: u_s.id), data: { "turbo-method": :delete, turbo_confirm: "You sure?" }  %>
-            <% end %>
+            <table class="table">
+                <tbody>
+                    <% @user_skill.sort_by {|sorted_user_skill| sorted_user_skill.id }.each do |u_s| %>
+                        <tr>
+                            <td><%= @skill.find(u_s.skill_id).skill_name %></td>
+                            <td><%= u_s.detail %></td>
+                            <% if current_user.admin?  %>
+                                <td><%= link_to "edit", edit_user_user_skill_path(user_id: @posted_user, id: u_s.id) %>
+                                <%= link_to "delete", user_user_skill_path(user_id: @posted_user, id: u_s.id), data: { "turbo-method": :delete, turbo_confirm: "You sure?" }  %></td>
+                            <% end %>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
         </div>
-    <% end %>
+    </div>
 </div>

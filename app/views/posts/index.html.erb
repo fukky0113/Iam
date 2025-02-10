@@ -4,10 +4,20 @@
 
 <div class="mx-5">
 
-    <h2>プロフィール</h2>
-    <p class="my-3"><%= @posted_user.profile %></p>
+    <div class="my-3">
+        <%= render 'posts/profile' %>
+    </div>
+
+    <div class="my-3">
+        <%= render 'posts/skill' %>
+    </div>
     
-    <%= render 'posts/skill' %>
-    <%= render 'posts/project' %>
-    <%= render 'posts/post' %>
+    <div class="my-3">
+        <%= render 'posts/project' %>
+    </div>
+    
+    <div class="my-3">
+        <%= render 'posts/post' %>
+    </div>
 </div>
+

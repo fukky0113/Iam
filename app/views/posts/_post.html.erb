@@ -1,4 +1,10 @@
 <h2>その他</h2>
+<% if logged_in? %>
+    <% if current_user.admin?  %>
+        <%= link_to "new", new_post_path %>
+    <% end %>
+<% end %>
+
 <% @post.select(:category_id).distinct.each do |category| %>
     <h3><%= category.category.category %></h3>
     <div class="row">
