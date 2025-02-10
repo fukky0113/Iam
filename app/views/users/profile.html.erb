@@ -1,0 +1,21 @@
+<% provide(:title, 'Profile Edit') %>
+
+<div class="d-flex justify-content-center  mt-5">
+    <div class="card text-center shadow" style="width: 26rem">
+        <div class="card-body">
+            <h1 class="card-title">Edit</h1>
+
+            <%= form_with(model: @user) do |f| %>
+                <%= render 'shared/error_messages' %>
+
+                <div class="col-sm mx-3 my-3">
+                    <%= f.text_area :profile, class: "form-control", placeholder: "Profile", style: "height:250px" %>
+                </div>
+
+                <div class="mx-3 my-3">
+                    <%= f.submit "Save changes", class: "btn btn-primary w-100" %>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>

@@ -6,7 +6,8 @@
         <div class="col-md-8">
             <div class="card-body">
                 <h2 class="card-title">プロフィール</h2>
-                <p class="card-text"><%= @posted_user.profile %></p>
+                <%= link_to "edit", profile_user_path(@posted_user) %>
+                <p class="card-text"><%=safe_join(@posted_user.profile.split("\n"),tag(:br))%></p>
             </div>
         </div>
     </div>
