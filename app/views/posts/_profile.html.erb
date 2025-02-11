@@ -8,7 +8,9 @@
         <div class="col-md-10">
             <div class="card-body">
                 <h2 class="card-title">プロフィール</h2>
-                <%= link_to "edit", profile_user_path(@posted_user) %>
+                <% if current_user.admin?  %>
+                    <%= link_to "edit", profile_user_path(@posted_user) %>
+                <% end %>
                 
                 <% if @posted_user.profile.present? %>
                     <p class="card-text"><%=safe_join(@posted_user.profile.split("\n"),tag(:br))%></p>

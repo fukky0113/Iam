@@ -6,15 +6,22 @@ class Project < ApplicationRecord
   has_many :project_skills, foreign_key: :project_id
   has_many :skills, through: :project_skills
 
+  validates :summary, presence: true
+  validates :incharge, presence: true
+  validates :achivement, presence: true
+  validates :start_on, presence: true
+  validates :end_on, presence: true
+
+  # post-indexにて呼び出されprojectモデルの変更を行う
   def save_skills(project_id, skill_ids)
     skill_ids.each do |skill_id|
       if !(skill_id.blank?)
-        Rails.logger.debug "project_id #{project_id} skill_id #{skill_id}"
         ProjectSkill.relation_create(project_id, skill_id)
       end
     end
   end
 
+  # 実質的なupdate(そのプロジェクトIDを全て削除→要求のスキルIDを登録)。
   def update_skills(project_id, skill_ids)
     projectskills = ProjectSkill.where(project_id: project_id)
     

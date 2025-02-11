@@ -91,7 +91,7 @@ class UserControllerTest < ActionDispatch::IntegrationTest
     log_in_as(@admin_user)
     patch user_path(@admin_user), params: { user: { name: @admin_user.name,
                                               user_id: @admin_user.user_id}}
-    assert_redirected_to user_path(@admin_user)
+    assert_redirected_to posts_path
   end
 
   test "if you are not log in, should update user" do
@@ -170,5 +170,26 @@ class UserControllerTest < ActionDispatch::IntegrationTest
     assert_response :see_other
     follow_redirect!
     assert_redirected_to posts_path
+  end
+
+  # test profile
+  test "should get profile" do
+    log_in_as(@admin_user)
+    get profile_user_path(@admin_user)
+    assert_response :success
+  end
+
+  test "should get profile (not admin)" do
+    log_in_as(@user)
+    get profile_user_path(@user)
+    assert_response :see_other
+    follow_redirect!
+    assert_redirected_to posts_path
+  end
+
+  test "should get profile (not log in)" do
+    get profile_user_path(@admin_user)
+    assert_response :see_other
+    assert_redirected_to login_path
   end
 end

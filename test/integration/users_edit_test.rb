@@ -29,7 +29,7 @@ class UsersEditTest < ActionDispatch::IntegrationTest
                                               user_id: user_id,
                                               password:   "",
                                               password_confirmation: ""}}
-    assert_redirected_to @user
+    assert_redirected_to posts_path
     @user.reload
     assert_equal name, @user.name
     assert_equal user_id, @user.user_id

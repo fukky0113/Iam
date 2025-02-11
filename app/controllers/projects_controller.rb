@@ -1,4 +1,7 @@
 class ProjectsController < ApplicationController
+  before_action :logged_in_user, only: [:new, :create, :destroy, :edit, :update]
+  before_action :admin_user, only: [:new, :create, :destroy, :edit, :update]
+
   def new
     @project = Project.new
     @project_skill = ProjectSkill.new
@@ -18,6 +21,8 @@ class ProjectsController < ApplicationController
       else
         render 'new', status: :unprocessable_entity
       end
+    else
+      render 'new', status: :unprocessable_entity
     end
   end
 

@@ -2,6 +2,10 @@ class ProjectSkill < ApplicationRecord
   belongs_to :project
   belongs_to :skill
 
+  # user_idとskill_idの組み合わせが一意であること
+  validates :project_id, uniqueness: { scope: :skill_id }, presence: true
+  validates :skill_id, presence: true
+
   def ProjectSkill.relation_create(project_id, skill_id)
     ProjectSkill.create(project_id: project_id, skill_id: skill_id)
   end

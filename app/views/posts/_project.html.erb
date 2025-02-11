@@ -1,8 +1,10 @@
 <div class="card">
     <div class="card-body">
         <h2>プロジェクト経歴</h2>
-        <%= link_to "new", new_user_project_path(@posted_user) %>
-
+        <% if current_user.admin?  %>
+            <%= link_to "new", new_user_project_path(@posted_user) %>
+        <% end %>
+        
         <% @project.sort_by {|sorted_project| sorted_project.start_on }.each do |project| %>
             <div class="rounded bg-secondary-subtle mx-3 my-3">
                 <div class="mx-3">

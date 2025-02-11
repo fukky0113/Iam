@@ -7,5 +7,6 @@ class CreateProjectSkills < ActiveRecord::Migration[7.0]
 
       t.timestamps
     end
+    add_index :project_skills, [:project_id, :skill_id], unique: true
   end
 end
