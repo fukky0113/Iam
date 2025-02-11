@@ -11,7 +11,7 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
-    #ポスト可能ユーザーを限定
+    # ポスト可能ユーザーを限定
     @project.user_id = User.first.id
 
     if @project.save
@@ -43,14 +43,16 @@ class ProjectsController < ApplicationController
     # ポスト可能ユーザーを限定
     @user = User.first
 
+    update_flg = false
     if @project.update(project_params)
       skill_ids = project_skill_params[:project_skill]
       if @project.update_skills(@project.id, skill_ids[:skill_id])
         redirect_to posts_path, status: :see_other
-      else
-        render 'edit', status: :unprocessable_entity
+        update_flg = true
       end
     end
+
+    render 'edit', status: :unprocessable_entity unless update_flg
   end
 
   private
@@ -60,7 +62,6 @@ class ProjectsController < ApplicationController
   end
 
   def project_skill_params
-    params.require(:project).permit(project_skill:[skill_id:[]])
+    params.require(:project).permit(project_skill: [skill_id: []])
   end
-
 end

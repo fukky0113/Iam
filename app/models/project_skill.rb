@@ -6,11 +6,11 @@ class ProjectSkill < ApplicationRecord
   validates :project_id, uniqueness: { scope: :skill_id }, presence: true
   validates :skill_id, presence: true
 
-  def ProjectSkill.relation_create(project_id, skill_id)
+  def self.relation_create(project_id, skill_id)
     ProjectSkill.create(project_id: project_id, skill_id: skill_id)
   end
 
-  def ProjectSkill.relation_destroy(project_id)
+  def self.relation_destroy(project_id)
     project_id.destroy
   end
 end

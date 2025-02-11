@@ -33,13 +33,13 @@ class ProjectsControllerTest < ActionDispatch::IntegrationTest
     log_in_as(@admin_user)
     assert_difference 'Project.count' do
       post user_projects_path(@admin_user), params: { project: { summary: "test",
-                                                                  incharge: "test",
-                                                                  achivement: "test",
-                                                                  start_on: "2022/2/1",
-                                                                  end_on: "2022/2/2",
-                                                                  user_id: @admin_user.id,
-                                                                  company_id: @company.id,
-                                                                  project_skill: {skill_id: ["1"]  } } }
+                                                                 incharge: "test",
+                                                                 achivement: "test",
+                                                                 start_on: "2022/2/1",
+                                                                 end_on: "2022/2/2",
+                                                                 user_id: @admin_user.id,
+                                                                 company_id: @company.id,
+                                                                 project_skill: { skill_id: ["1"] } } }
     end
     assert_response :see_other
     assert_redirected_to posts_path
@@ -49,13 +49,13 @@ class ProjectsControllerTest < ActionDispatch::IntegrationTest
     log_in_as(@user)
     assert_no_difference 'Project.count' do
       post user_projects_path(@admin_user), params: { project: { summary: "test",
-                                                                  incharge: "test",
-                                                                  achivement: "test",
-                                                                  start_on: "2022/2/1",
-                                                                  end_on: "2022/2/2",
-                                                                  user_id: @admin_user.id,
-                                                                  company_id: @company.id,
-                                                                  project_skill: {skill_id: ["1"]  } } }
+                                                                 incharge: "test",
+                                                                 achivement: "test",
+                                                                 start_on: "2022/2/1",
+                                                                 end_on: "2022/2/2",
+                                                                 user_id: @admin_user.id,
+                                                                 company_id: @company.id,
+                                                                 project_skill: { skill_id: ["1"] } } }
     end
     assert_response :see_other
     follow_redirect!
@@ -65,13 +65,13 @@ class ProjectsControllerTest < ActionDispatch::IntegrationTest
   test "should create project (not log in)" do
     assert_no_difference 'Project.count' do
       post user_projects_path(@admin_user), params: { project: { summary: "test",
-                                                                  incharge: "test",
-                                                                  achivement: "test",
-                                                                  start_on: "2022/2/1",
-                                                                  end_on: "2022/2/2",
-                                                                  user_id: @admin_user.id,
-                                                                  company_id: @company.id,
-                                                                  project_skill: {skill_id: ["1"]  } } }
+                                                                 incharge: "test",
+                                                                 achivement: "test",
+                                                                 start_on: "2022/2/1",
+                                                                 end_on: "2022/2/2",
+                                                                 user_id: @admin_user.id,
+                                                                 company_id: @company.id,
+                                                                 project_skill: { skill_id: ["1"] } } }
     end
     assert_response :see_other
     assert_redirected_to login_path
@@ -103,7 +103,7 @@ class ProjectsControllerTest < ActionDispatch::IntegrationTest
     assert_response :see_other
     assert_redirected_to login_path
   end
-  
+
   # test edit
   test "should get edit" do
     log_in_as(@admin_user)
@@ -127,44 +127,47 @@ class ProjectsControllerTest < ActionDispatch::IntegrationTest
   # test update
   test "should update project" do
     log_in_as(@admin_user)
-    patch user_project_path(user_id: @admin_user.id, id: @unused_project.id), 
-                                            params: { project: { summary: "test",
-                                                                  incharge: "test",
-                                                                  achivement: "test",
-                                                                  start_on: "2022/2/1",
-                                                                  end_on: "2022/2/2",
-                                                                  user_id: @admin_user.id,
-                                                                  company_id: @company.id,
-                                                                  project_skill: {skill_id: ["1"]  } } }
+    patch user_project_path(user_id: @admin_user.id, id: @unused_project.id),
+          params: {
+            project: {
+              summary: "test",
+              incharge: "test",
+              achivement: "test",
+              start_on: "2022/2/1",
+              end_on: "2022/2/2",
+              user_id: @admin_user.id,
+              company_id: @company.id,
+              project_skill: { skill_id: ["1"] }
+            }
+          }
     assert_redirected_to posts_path
   end
 
   test "should update project (not administrator)" do
     log_in_as(@user)
-    patch user_project_path(user_id: @admin_user, id: @unused_project.id), 
-                                            params: { project: { summary: "test",
-                                                                  incharge: "test",
-                                                                  achivement: "test",
-                                                                  start_on: "2022/2/1",
-                                                                  end_on: "2022/2/2",
-                                                                  user_id: @admin_user.id,
-                                                                  company_id: @company.id,
-                                                                  project_skill: {skill_id: ["1"]  } } }
+    patch user_project_path(user_id: @admin_user, id: @unused_project.id),
+          params: { project: { summary: "test",
+                               incharge: "test",
+                               achivement: "test",
+                               start_on: "2022/2/1",
+                               end_on: "2022/2/2",
+                               user_id: @admin_user.id,
+                               company_id: @company.id,
+                               project_skill: { skill_id: ["1"] } } }
     assert_redirected_to root_url
   end
 
   test "should update project (not log in)" do
-    patch user_project_path(user_id: @user, id: @unused_project.id), 
-                                            params: { project: { summary: "test",
-                                                                  incharge: "test",
-                                                                  achivement: "test",
-                                                                  start_on: "2022/2/1",
-                                                                  end_on: "2022/2/2",
-                                                                  user_id: @admin_user.id,
-                                                                  company_id: @company.id,
-                                                                  project_skill: {skill_id: ["1"]  } } }
+    patch user_project_path(user_id: @user, id: @unused_project.id),
+          params: { project: { summary: "test",
+                               incharge: "test",
+                               achivement: "test",
+                               start_on: "2022/2/1",
+                               end_on: "2022/2/2",
+                               user_id: @admin_user.id,
+                               company_id: @company.id,
+                               project_skill: { skill_id: ["1"] } } }
     assert_response :see_other
     assert_redirected_to login_path
   end
-
 end

@@ -14,23 +14,23 @@ class ProjectTest < ActiveSupport::TestCase
   test "summary should be present" do
     @project.summary = " "
     assert_not @project.valid?
-  end  
-  
+  end
+
   test "incharge should be present" do
     @project.incharge = " "
     assert_not @project.valid?
-  end  
-  
+  end
+
   test "achivement should be present" do
     @project.achivement = " "
     assert_not @project.valid?
-  end  
-  
+  end
+
   test "start_on should be present" do
     @project.start_on = " "
     assert_not @project.valid?
-  end  
-  
+  end
+
   test "end_on should be present" do
     @project.end_on = " "
     assert_not @project.valid?

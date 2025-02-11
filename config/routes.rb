@@ -10,7 +10,6 @@ Rails.application.routes.draw do
   resources :categories, only: [:new, :destroy, :create]
   resources :skills
 
-
   resources :users do
     get "profile", on: :member
     resources :companies, only: [:new, :create, :destroy]

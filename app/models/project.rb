@@ -15,24 +15,20 @@ class Project < ApplicationRecord
   # post-indexにて呼び出されprojectモデルの変更を行う
   def save_skills(project_id, skill_ids)
     skill_ids.each do |skill_id|
-      if !(skill_id.blank?)
-        ProjectSkill.relation_create(project_id, skill_id)
-      end
+      ProjectSkill.relation_create(project_id, skill_id) unless skill_id.blank?
     end
   end
 
   # 実質的なupdate(そのプロジェクトIDを全て削除→要求のスキルIDを登録)。
   def update_skills(project_id, skill_ids)
     projectskills = ProjectSkill.where(project_id: project_id)
-    
+
     projectskills.each do |project_skill|
       ProjectSkill.relation_destroy(project_skill)
     end
 
     skill_ids.each do |skill_id|
-      if !(skill_id.blank?)
-        ProjectSkill.relation_create(project_id, skill_id)
-      end
+      ProjectSkill.relation_create(project_id, skill_id) unless skill_id.blank?
     end
   end
 end
