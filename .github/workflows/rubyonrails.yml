@@ -71,10 +71,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: [test_rails, test_rubocop]
     timeout-minutes: 10
-
-    defaults:
-      run:
-        working-directory: containers/nginx
     
     steps:
       - name: Checkout
@@ -109,6 +105,10 @@ jobs:
     needs: [test_rails, test_rubocop]
     timeout-minutes: 10
     
+    defaults:
+      run:
+        working-directory: containers/nginx
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
