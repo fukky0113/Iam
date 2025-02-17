@@ -62,7 +62,9 @@ gem 'mini_racer'
 
 gem 'actionpack', '7.0.8.7'
 
+# rubocop対応
 gem 'net-imap', '0.5.6'
+gem 'rack', '2.2.11'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
